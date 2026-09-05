@@ -62,6 +62,8 @@ jobs:
     defaults:
       run:
         working-directory: starter/frontend
+    env:
+      REACT_APP_MOVIE_API_URL: http://localhost:5000
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -69,5 +71,6 @@ jobs:
       - name: Build Docker image
         run: |
           docker build \
-            --build-arg=REACT_APP_MOVIE_API_URL=http://localhost:5000 \
+            --build-arg REACT_APP_MOVIE_API_URL=${{ env.REACT_APP_MOVIE_API_URL }} \
             --tag mp-frontend:latest .
+            
